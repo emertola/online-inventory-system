@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
@@ -5,6 +6,21 @@ const logger = require("morgan");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    "mongodb+srv://" +
+      process.env.MONGO_ATLAS_USERNAME +
+      ":" +
+      process.env.MONGO_ATLAS_PW +
+      "@cluster0-tgbxv.mongodb.net/test?retryWrites=true",
+    {
+      useNewUrlParser: true
+    }
+  )
+  .then(result => console.log("MongoDB connect successful!"))
+  .catch(err => console.log("Error: ", err));
 
 const index = require("./routes/index");
 
