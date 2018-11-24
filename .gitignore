@@ -1,0 +1,4 @@
+#do not upload this to the remote repo
+/node_modules
+
+package-lock.json
